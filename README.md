@@ -22,7 +22,7 @@ Will create config.json an keys folder containing public and private keys of our
 &emsp;Fee: 01
 
 # Account preparation
-> ***using the key inside keys folder*** \
+> ***using the keys inside keys folder*** \
   ***redeem founds from*** https://faucet.minaprotocol.com/?address= ```<ADDESS>```
   
 &nbsp;Using blockexplorer you can see if the transaction is completed
