@@ -26,7 +26,19 @@ const deployerPrivateKeyBase58 = JSON.parse(
 ).privateKey;
 const deployerPrivateKey = PrivateKey.fromBase58(deployerPrivateKeyBase58);
 const deployerPublicKey = deployerPrivateKey.toPublicKey();
+
 const zkAppPrivateKey = deployerPrivateKey;
+
+const payerAlias = process.argv[3];
+const payerKeysFileContents = fs.readFileSync(
+    'keys/' + payerAlias + '.json',
+    'utf8'
+);
+const payerPrivateKeyBase58 = JSON.parse(
+    payerKeysFileContents
+).privateKey;
+const payerPrivateKey = PrivateKey.fromBase58(payerPrivateKeyBase58);
+const payerPublicKey = payerPrivateKey.toPublicKey();
 
 // ----------------------------------------------------
 
@@ -43,7 +55,23 @@ let account = await loopUntilAccountExists({
     isZkAppAccount: false,
 });
 console.log(
-    `Using fee payer account with nonce ${account.nonce}, balance ${account.balance}`
+    `Using fee payer account with nonce ${account.nonce}, balance ${account.balance} [deployer]`
+);
+
+let accountPayer = await loopUntilAccountExists({
+    account: payerPublicKey,
+    eachTimeNotExist: () => {
+        console.log(
+            'Payer account does not exist. ' +
+            'Request funds at faucet ' +
+            'https://faucet.minaprotocol.com/?address=' +
+            payerPublicKey.toBase58()
+        );
+    },
+    isZkAppAccount: false,
+});
+console.log(
+    `Using fee payer account with nonce ${account.nonce}, balance ${account.balance} [payer]`
 );
 
 // ----------------------------------------------------
@@ -70,7 +98,7 @@ console.log(`current value of num is ${num}`);
 // ----------------------------------------------------
 
 let transaction = await Mina.transaction(
-    { sender: deployerPublicKey, fee: transactionFee },
+    { sender: payerPublicKey, fee: transactionFee },
     () => {
         zkapp.update(num.mul(num));
     }
@@ -82,7 +110,7 @@ await transaction.prove();
 let time1 = performance.now();
 console.log(`creating proof took ${(time1 - time0) / 1e3} seconds`);
 // sign transaction with the deployer account
-transaction.sign([deployerPrivateKey]);
+transaction.sign([payerPrivateKey]);
 console.log('Sending the transaction...');
 let pendingTransaction = await transaction.send();
 
