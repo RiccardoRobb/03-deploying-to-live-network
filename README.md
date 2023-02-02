@@ -49,7 +49,7 @@ When we change our code, the verification key associated with it will change, an
 - ***compile the Smart Contract and wait for its deployment*** \
   lines[49-70] \
   <sub>
-  Programmatic deploy is commented becose we use the "zk deploy" command
+  Programmatic deploy is commented becouse we use the "zk deploy" command
   </sub> 
 
 - ***after fetching the current value of our Smart Contract we can invoke the other methods*** \
