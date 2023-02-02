@@ -23,7 +23,7 @@ Will create config.json an keys folder containing public and private keys of our
 
 # Account preparation
 > ***using the key inside keys folder*** \
-  ***redeem founds from*** https://faucet.minaprotocol.com/?address=<YOUR-ADDRESS>
+  ***redeem founds from*** https://faucet.minaprotocol.com/?address= ```<ADDESS>```
   
 &nbsp;Using blockexplorer you can see if the transaction is completed
 
@@ -61,7 +61,7 @@ When we change our code, the verification key associated with it will change, an
 # Compile and Run
 > **npm run build && node build/src/main.js** "project-name"
 
-# ERROR while sending transaction
+~~#ERROR while sending transaction~~ **[SOLVED]**
 ```
 got graphql errors [
   {
