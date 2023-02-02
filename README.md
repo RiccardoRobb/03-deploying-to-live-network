@@ -13,6 +13,7 @@
 > **npm run build && node build/src/main.js**
 
 # ZK config
+### Create 2 accounts, 1 for Deployer and 1 for Payer
 > **zk config**
 
 Will create config.json an keys folder containing public and private keys of our application \
@@ -42,20 +43,20 @@ When we change our code, the verification key associated with it will change, an
   
 - ***load Berkeley network*** \
   lines[9-16]
-- ***deploy the Smart Contract*** \
-  lines[16-31]
-- ***wait for deployer account*** \
-  lines[31-49]
+- ***load Accounts from keys/*.json*** \
+  lines[16-43]
+- ***wait for deployer and payer account*** \
+  lines[43-77]
 - ***compile the Smart Contract and wait for its deployment*** \
-  lines[49-70] \
+  lines[77-98] \
   <sub>
   Programmatic deploy is commented becouse we use the "zk deploy" command
   </sub> 
 
 - ***after fetching the current value of our Smart Contract we can invoke the other methods*** \
-  lines[70-89]
+  lines[98-117]
 - ***check if the pending transaction is complete*** \
-  lines[89-102]
+  lines[117-130]
 
 # Compile and Run
 > **npm run build && node build/src/main.js** "project-name"
@@ -78,7 +79,7 @@ got graphql errors [
 ]
 ```
 ### Possible solutions:
- * Check and Setup new permissions for the zkAccount \
-   <sub>zkApp account needs proof authorization for sending Mina</sub>
- * Use a different fee payer
+ * [:question:] Check and Setup new permissions for the zkAccount \
+   &emsp;&emsp;<sub>zkApp account needs proof authorization for sending Mina</sub>
+ * [:heavy_check_mark:] Use a different fee payer
 </center>
