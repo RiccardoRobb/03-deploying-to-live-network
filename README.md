@@ -77,5 +77,8 @@ got graphql errors [
   }
 ]
 ```
-
+### Possible solutions:
+ * Check and Setup new permissions for the zkAccount \
+   <sub>zkApp account needs proof authorization for sending Mina</sub>
+ * Use a different fee payer
 </center>
