@@ -80,7 +80,7 @@ got graphql errors [
 ```
 ### Possible solutions:
  * [:heavy_check_mark:] Check and Setup new permissions for the zkAccount \
-   &emsp;&emsp;<sub>zkApp account needs proof authorization for sending Mina</sub> \
+   &emsp;&emsp;<sub>zkApp account needs proof authorization for sending Mina</sub>
    ```
    init() {
      this.account.permissions.set({
