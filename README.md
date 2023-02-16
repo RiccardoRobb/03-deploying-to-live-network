@@ -79,7 +79,15 @@ got graphql errors [
 ]
 ```
 ### Possible solutions:
- * [:question:] Check and Setup new permissions for the zkAccount \
-   &emsp;&emsp;<sub>zkApp account needs proof authorization for sending Mina</sub>
+ * [:heavy_check_mark:] Check and Setup new permissions for the zkAccount \
+   &emsp;&emsp;<sub>zkApp account needs proof authorization for sending Mina</sub> \
+   ```
+   init() {
+     this.account.permissions.set({
+       ...Permissions.default(), 
+       send: Permissions.signature(),
+      });
+   }
+   ```
  * [:heavy_check_mark:] Use a different fee payer
 </center>
